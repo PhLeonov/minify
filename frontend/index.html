@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Minify</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Minify"><span class="brand-icon">m<span>·</span></span>minify</a>
+    <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+    <div class="nav-item"><span>▧</span> Сжатие фотографий <span class="nav-dot"></span></div>
+    <div class="side-note"><div class="lock">◇</div><strong>Ваши фото — только у вас</strong><p>Обработка на компьютере.<br>Без загрузки в облако.</p></div>
+    <div class="version">MINIFY DESKTOP <span>1.0</span></div>
+  </aside>
+  <main>
+    <header><div><div class="eyebrow">МЕНЬШЕ МЕСТА. БОЛЬШЕ ВОСПОМИНАНИЙ.</div><h1>Лёгкие фотографии<span>.</span></h1><p>Освободите место, сохранив то, что важно.</p></div><span class="local-badge"><i></i> Локально на вашем ПК</span></header>
+    <div class="workspace">
+      <section class="photos-panel">
+        <button id="add-area" class="upload-zone"><span class="upload-icon">＋</span><strong>Добавьте фотографии</strong><span>Нажмите, чтобы выбрать файлы на компьютере</span><span class="file-types">JPG <b>·</b> JPEG <b>·</b> PNG</span></button>
+        <div class="queue-title"><h2>Ваши фотографии <span id="count">0</span></h2><button id="clear" class="text-button" disabled>Очистить</button></div>
+        <div id="photo-list" class="photo-list"><div class="empty"><span>▧</span><p>Здесь появятся ваши фотографии</p><small>Можно выбрать несколько файлов сразу</small></div></div>
+        <div class="queue-footer"><span id="total-size">Файлы ещё не добавлены</span><button id="add-more" class="text-button">＋ Добавить ещё</button></div>
+      </section>
+      <section class="settings-panel">
+        <div class="settings-heading"><h2>Настройки сжатия</h2><span>⚙</span></div>
+        <label class="field-label" for="format">Формат результата</label>
+        <select id="format"><option value="original">Сохранить исходный формат</option><option value="jpeg">JPEG — для фотографий</option></select>
+        <p id="format-note" class="hint">JPEG: сжатие с потерями. PNG: оптимизация без потери пикселей.</p>
+        <div class="quality-label"><label class="field-label" for="quality">Качество JPEG</label><output id="quality-value">80<span>%</span></output></div>
+        <input id="quality" type="range" min="10" max="100" value="80"><div class="range-labels"><span>Меньше размер</span><span>Больше деталей</span></div>
+        <div class="presets"><button data-quality="60">Компактно</button><button data-quality="80" class="active">Баланс</button><button data-quality="92">Бережно</button></div>
+        <div class="separator"></div>
+        <label class="field-label" for="dimensions">Разрешение</label><select id="dimensions"><option value="0">Сохранить исходное</option><option value="2560">До 2560 px по длинной стороне</option><option value="1920">До 1920 px по длинной стороне</option><option value="1280">До 1280 px по длинной стороне</option></select>
+        <p class="hint">Размеры в пикселях меняются только по вашему выбору.</p>
+        <label class="field-label destination-label">Сохранить в</label><button id="choose-folder" class="folder-button"><span>▱</span><span id="folder-label">Папка Minify рядом с оригиналом</span><span>…</span></button><button id="reset-folder" class="text-button" hidden>Вернуть папку по умолчанию</button>
+        <div class="safe-note"><span>✓</span><p>Оригиналы сохраняются.<br>Результаты — в отдельных файлах.</p></div>
+        <button id="compress" class="primary" disabled>Сжать фотографии <span>↗</span></button><button id="cancel" class="cancel" hidden>Остановить после текущего этапа</button>
+      </section>
+    </div>
+    <section id="summary" class="summary" aria-live="polite"><div class="summary-icon">↘</div><div><strong id="summary-title">Большие моменты. Маленькие файлы.</strong><p id="summary-text">Добавьте фотографии — и узнайте, сколько места можно освободить.</p></div><div id="savings" class="savings"></div><div id="progress-track" class="progress-track" hidden><div id="progress-bar"></div></div></section>
+    <button id="open-results" class="text-button" hidden>Открыть папку результата ↗</button>
+    <div id="message" class="message" role="status" hidden></div>
+    <footer><span>JPEG / PNG · до 60 Мп и 256 МБ на файл</span><span>При перекодировании удаляются метаданные, включая GPS.</span></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

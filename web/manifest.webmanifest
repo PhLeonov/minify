@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Minify — сжатие фотографий",
+  "short_name": "Minify",
+  "description": "Сжимайте JPEG и PNG на своём устройстве, без загрузки фотографий в облако.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#193d30",
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#193d30">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="Бесплатное сжатие JPEG и PNG на вашем устройстве. Фотографии не загружаются на сервер.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <title>Minify — лёгкие фотографии</title>
+</head>
+<body>
+  <header class="topbar"><a href="./" class="brand" aria-label="Minify, главная"><span class="brand-mark">m<span>·</span></span>minify</a><div class="top-actions"><span class="private"><span class="dot"></span> Только на вашем устройстве</span><button id="install" class="button subtle">Установить <span aria-hidden="true">↗</span></button></div></header>
+  <main>
+    <section class="intro"><div class="eyebrow">МЕНЬШЕ МЕСТА. БОЛЬШЕ ВОСПОМИНАНИЙ.</div><h1>Лёгкие фотографии<span>.</span></h1><p>Сжимайте фото прямо здесь. Они остаются только у вас.</p></section>
+    <div class="workspace">
+      <section class="photo-panel panel" aria-label="Фотографии">
+        <input id="file-input" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" multiple hidden>
+        <button id="add" class="dropzone"><span class="upload-icon" aria-hidden="true">＋</span><strong>Добавьте фотографии</strong><span>Из галереи или файлов вашего устройства</span><small>JPEG / PNG <span aria-hidden="true">·</span> Можно выбрать несколько</small></button>
+        <div class="queue-heading"><h2>Ваши фотографии <span id="count" class="count">0</span></h2><button id="clear" class="button text" disabled>Очистить</button></div>
+        <div id="list" class="photo-list"><div class="empty"><span aria-hidden="true">▧</span><p>Здесь появятся ваши фотографии</p><small>Начните с пары любимых снимков</small></div></div>
+        <div class="queue-footer"><span id="total">Файлы ещё не добавлены</span><button id="add-more" class="button text">＋ Добавить ещё</button></div>
+      </section>
+      <section class="settings panel" aria-labelledby="settings-title">
+        <div class="settings-heading"><h2 id="settings-title">Настройки сжатия</h2><span class="tag">НА ВАШЕМ УСТРОЙСТВЕ</span></div>
+        <label for="format">Формат результата</label><select id="format"><option value="original">Сохранить исходный формат</option><option value="jpeg">JPEG — для фотографий</option></select>
+        <p id="format-note" class="hint">JPEG: сжатие с потерями. PNG: оптимизация без изменения пикселей при исходном разрешении.</p>
+        <div class="quality-heading"><label for="quality">Качество JPEG</label><output id="quality-value" for="quality">80<span>%</span></output></div>
+        <input id="quality" type="range" min="10" max="100" value="80"><div class="range-labels"><span>Меньше размер</span><span>Больше деталей</span></div>
+        <div class="presets"><button data-quality="60" aria-pressed="false">Компактно</button><button data-quality="80" class="active" aria-pressed="true">Баланс</button><button data-quality="92" aria-pressed="false">Бережно</button></div>
+        <div class="divider"></div>
+        <label for="dimensions">Разрешение</label><select id="dimensions"><option value="0">Сохранить исходное</option><option value="2560">До 2560 px по длинной стороне</option><option value="1920">До 1920 px по длинной стороне</option><option value="1280">До 1280 px по длинной стороне</option></select>
+        <p class="hint">Маленькие фотографии не увеличиваются.</p>
+        <div class="safe-note"><span aria-hidden="true">✓</span><p>Оригиналы остаются у вас.<br>Результаты сохраняете отдельно.</p></div>
+        <button id="compress" class="button primary" disabled>Сжать фотографии <span aria-hidden="true">↗</span></button>
+        <button id="cancel" class="button cancel" hidden>Остановить сжатие</button>
+      </section>
+    </div>
+    <section class="summary" aria-live="polite" aria-atomic="true"><span class="summary-icon" aria-hidden="true">↘</span><div class="summary-copy"><h2 id="summary-title">Большие моменты. Маленькие файлы.</h2><p id="summary-text">Добавьте фотографии, чтобы узнать, насколько меньше станут копии.</p></div><strong id="savings"></strong><div id="progress-track" class="progress-track" role="progressbar" aria-label="Прогресс сжатия" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><div id="progress-bar"></div></div></section>
+    <button id="share-all" class="button share-all" hidden>Поделиться результатами / сохранить</button>
+    <p id="save-note" class="save-note" hidden>На iPhone нажмите «Поделиться» у результата и выберите «Сохранить изображение» или «Сохранить в Файлы». Результаты хранятся в этой вкладке до её закрытия. Копии не удаляют оригиналы и сами по себе не освобождают место.</p>
+    <div id="message" class="message" role="alert" hidden></div>
+    <details class="help"><summary>Как это работает и какие есть ограничения?</summary><p>Сжатие выполняется локально. Фотографии не отправляются на сервер и не сохраняются в кеш приложения. JPEG теряет часть деталей; ползунок качества не влияет на PNG. При перекодировании удаляются метаданные, включая GPS и цветовые профили.</p><p>Если результат не меньше оригинала, предлагаем исходный файл без изменений — выбранные формат и разрешение в этом случае не применяются. Для телефона: до 24 Мп и 64 МБ на файл; до 40 файлов и 128 МБ в очереди. HEIC, Live Photos и анимированные PNG не поддерживаются. Для HEIC сначала экспортируйте JPEG.</p><p>После появления статуса «Готово к работе офлайн» приложение можно открыть без интернета. Браузер может удалить кеш при нехватке места — тогда понадобится повторное открытие с интернетом. Во время сжатия держите приложение открытым.</p></details>
+    <footer><span id="offline-status" role="status">Подготовка офлайн-режима…</span><span>MINIFY · GO + WEBASSEMBLY</span></footer>
+  </main>
+  <dialog id="install-dialog"><button id="close-install" class="button dialog-close" aria-label="Закрыть">×</button><span class="brand-mark">m<span>·</span></span><h2>Minify на главном экране</h2><p>На iPhone откройте эту страницу в <strong>Safari</strong>, нажмите <strong>«Поделиться» → «На экран Домой»</strong> и подтвердите добавление.</p><p>На Android и компьютере используйте пункт «Установить приложение» в меню браузера, если он доступен.</p><p class="hint">Дождитесь статуса «Готово к работе офлайн». Компьютер для работы с телефона не нужен.</p><button id="install-done" class="button primary">Понятно</button></dialog>
+  <script src="./app.js" defer></script>
+</body>
+</html>

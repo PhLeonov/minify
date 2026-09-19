@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Minify",
+  "outputfilename": "Minify",
+  "frontend:dir": "frontend",
+  "author": {"name": "Minify", "email": ""},
+  "info": {
+    "companyName": "Minify",
+    "productName": "Minify — сжатие фотографий",
+    "productVersion": "1.0.0",
+    "copyright": "",
+    "comments": "Локальное сжатие JPEG и PNG"
+  }
+}

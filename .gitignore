@@ -1,0 +1,8 @@
+/build/bin/
+/*.exe
+/frontend/wailsjs/
+/*.syso
+/build/web/
+/build/minify-pwa.zip
+/node_modules/
+/test-results/

@@ -1,0 +1,12 @@
+{
+  "name": "minify-pwa",
+  "private": true,
+  "scripts": {
+    "build:web": "node scripts/build-web.cjs",
+    "preview:web": "node scripts/serve-web.cjs",
+    "test:web": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}
